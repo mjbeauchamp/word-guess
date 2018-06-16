@@ -4,7 +4,8 @@ class NavBar extends Component{
     constructor(){
         super()
         this.state = {
-            onCreateListPage: false
+            onCreateListPage: false,
+            currentCategories: {}
         }
     }
 

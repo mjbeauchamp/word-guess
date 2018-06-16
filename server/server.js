@@ -22,6 +22,7 @@ app.post("/api/list_grid", (req, res) => {
     let newCategory = req.body.titleInput;
     let newList = req.body.wordList;
     categories[newCategory] = newList;
+    res.send(categories);
 });
 
 

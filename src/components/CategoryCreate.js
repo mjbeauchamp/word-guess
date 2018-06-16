@@ -19,7 +19,7 @@ class CategoryCreate extends Component {
     }
 
     addWord = () => {
-        let currentWord = this.state.wordInput;
+        let currentWord = this.state.wordInput.toLowerCase();
         let newWordArr = this.state.wordList.slice();
         newWordArr.push(currentWord);
         this.setState({
@@ -29,15 +29,16 @@ class CategoryCreate extends Component {
     }
 
     createCategory = () => {
-        let {titleInput, wordList} = this.state;
-        axios.post("/api/list_grid", {titleInput, wordList}).then(
+        let titleInput = this.state.titleInput.toLowerCase();
+        let wordList = this.state.wordList;
+        axios.post("/api/list_grid", {titleInput, wordList}).then( res => {
             this.setState({
                 titleInput: "",
                 wordInput: "",
                 wordList: []
             }),
             this.props.showHome()
-        ).catch(err => {
+        }).catch(err => {
             console.log(err)
         });
     }

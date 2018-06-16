@@ -34,7 +34,6 @@ class App extends Component {
 
   componentDidMount(){
     axios.get("/api/list_grid").then(response => {
-      let newArr = [];
       this.setState({
           categories: response.data
       })
@@ -59,11 +58,15 @@ class App extends Component {
     })
   }
 
-  showHome = () => {
-    this.setState({
-      showShowWord: false,
-      showListGrid: true,
-      showCategoryCreate: false
+  //accepts an optoinal variable for if the showHome funciton is triggered from the CategoryCreate component
+  showHome = (newCatReturnedCategories) => {
+    axios.get("/api/list_grid").then(response => {
+      this.setState({
+        showShowWord: false,
+        showListGrid: true,
+        showCategoryCreate: false,
+        categories: response.data
+      })
     })
   }
 
