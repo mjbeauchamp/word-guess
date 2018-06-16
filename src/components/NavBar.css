@@ -1,0 +1,13 @@
+.my-navbar {
+    height: 80px;
+    width: 100%;
+    background-color: cornflowerblue;
+    display: flex;
+    align-items: center;
+    padding-left: 25px;
+
+}
+
+.my-navbar button {
+    margin: 15px;
+}

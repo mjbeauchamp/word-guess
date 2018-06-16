@@ -1,0 +1,13 @@
+.show-word {
+    width: 70%;
+    height: 50vh;
+    margin: 0 auto;
+    font-size: 90px;
+    background-color: cornflowerblue;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.show-word p {
+    padding-top: 120px;
+}

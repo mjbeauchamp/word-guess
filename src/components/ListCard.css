@@ -1,0 +1,10 @@
+.list-card{
+    width: 20%;
+    height: 200px;
+    background-color: cornflowerblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    margin: 3%;
+}
