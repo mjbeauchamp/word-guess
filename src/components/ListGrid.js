@@ -38,7 +38,7 @@ class ListGrid extends Component{
             });
             return (
                 // listName={val} gives us the category name, which is also the property key name in the main App.js categories object. This can help us access the proper array for the ShowWord 
-                <ListCard id={id} key={i} listName={val} showWord={this.props.showWord} showCategoryEdit={this.props.showCategoryEdit} saveClickedCard={this.props.saveClickedCard}/>
+                <ListCard id={id} key={i} listName={val} showWord={this.props.showWord} showCategoryEdit={this.props.showCategoryEdit} saveClickedCard={this.props.saveClickedCard} showEditList={this.props.showEditList} categoryData={this.state.categoryData} deleteList={this.props.deleteList}/>
             )
         });
 

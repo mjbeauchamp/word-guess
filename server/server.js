@@ -55,6 +55,38 @@ app.post("/api/list_grid", (req, res) => {
 });
 
 
+app.put("/api/list_grid/:id", (req, res) => {
+    let newTitle = req.body.titleInput;
+    let newList = req.body.wordList;
+    let id = req.body.id;
+    categories.forEach((val, i, arr) => {
+        if(val.idNum===id){
+            arr[i] = {
+                title: newTitle,
+                list: newList,
+                idNum: id
+            };
+        }
+    });
+    res.send({categories: categories, idNum: idNum});
+});
+
+app.delete("/api/list_grid/:id", (req, res) => {
+    let delId = req.params.id;
+    let indexNum;
+    if(delId>5){
+        categories.forEach((val, i) => {
+            if(val.idNum===delId){
+                indexNum = i;
+            }
+        })
+        categories.splice(indexNum, 1);
+        console.log(categories)
+    }
+    //categories.splice(delId, 1);
+    res.send({categories: categories, id: delId});
+});
+
 
 
 

@@ -24,8 +24,35 @@ class App extends Component {
       showCategoryEdit: false,
       categories: {},
       clickedCard: "",
-      idNum: 0
+      idNum: 0,
+      selectedId: 0,
+      selectedTitle: "",
+      selectedWordArr: []
     }
+  }
+
+  //This is what the call looks like from ListCard: props.showEditList(e, idNum, title, wordArr)
+  showEditList = (e, idNum, title, wordArr) => {
+    e.stopPropagation();
+    this.setState({
+      showShowWord: false,
+      showListGrid: false,
+      showCategoryEdit: true,
+      showCategoryCreate: false,
+      selectedId: idNum,
+      selectedTitle: title,
+      selectedWordArr: wordArr
+    })
+  }
+
+  deleteList(e, idNum, title){
+    e.stopPropagation();
+    let newCatList = {};
+    axios.delete("/api/list_grid/" + idNum, {idNum, title}).then(response => {
+      console.log(response.categories)
+    }).catch(err => {
+      console.log(err)
+    });
   }
 
   saveClickedCard = (listName) => {
@@ -66,15 +93,6 @@ class App extends Component {
     })
   }
 
-  showEditList = () => {
-    this.setState({
-      showShowWord: false,
-      showListGrid: false,
-      showCategoryEdit: true,
-      showCategoryCreate: false
-    })
-  }
-
   //accepts an optoinal variable for if the showHome funciton is triggered from the CategoryCreate component
   showHome = (newCatReturnedCategories) => {
     axios.get("/api/list_grid").then(response => {
@@ -92,14 +110,15 @@ class App extends Component {
   render() {
     let shownComponent;
     if(this.state.showListGrid){
-      shownComponent = <ListGrid saveClickedCard={this.saveClickedCard} showWord={this.showWord} showCategoryEdit={this.showCategoryEdit}/>
+      shownComponent = <ListGrid deleteList={this.deleteList} saveClickedCard={this.saveClickedCard} showWord={this.showWord} showCategoryEdit={this.showCategoryEdit} showEditList={this.showEditList}/>
     } else if(this.state.showShowWord){
       shownComponent = <ShowWord categories={this.state.categories} clickedCard={this.state.clickedCard}/>
     } else if(this.state.showCategoryCreate){
       shownComponent = <CategoryCreate showHome={this.showHome} idNum={this.state.idNum}/>
     } else if(this.state.showCategoryEdit){
-      shownComponent = <CategoryEdit />
+      shownComponent = <CategoryEdit showHome={this.showHome} selectedId={this.state.selectedId} selectedTitle={this.state.selectedTitle} selectedWordArr={this.state.selectedWordArr}/>
     }
+
     return (
       <div>
         <NavBar createPageBool={`${this.state.showCategoryCreate}`} showHome={this.showHome} showCreateList={this.showCreateList}/>

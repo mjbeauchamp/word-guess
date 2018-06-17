@@ -7,8 +7,18 @@ class CategoryEdit extends Component {
         this.state = {
             titleInput: "",
             wordInput: "",
-            wordList: []
+            wordList: [],
+            id: 0
         }
+    }
+
+    componentDidMount(){
+        this.setState({
+            titleInput: this.props.selectedTitle,
+            wordList: this.props.selectedWordArr,
+            id: this.props.selectedId
+        })
+        console.log(this.props)
     }
 
     updateInput = (e, inputName) => {
@@ -28,14 +38,16 @@ class CategoryEdit extends Component {
         });
     }
 
-    createCategory = () => {
+    saveChanges = () => {
         let titleInput = this.state.titleInput.toLowerCase();
         let wordList = this.state.wordList;
-        axios.post("/api/list_grid", {titleInput, wordList}).then( res => {
+        let id = this.state.id;
+        axios.put("/api/list_grid/" + this.state.id, {titleInput, wordList, id}).then( res => {
             this.setState({
                 titleInput: "",
                 wordInput: "",
-                wordList: []
+                wordList: [],
+                id: 0
             }),
             this.props.showHome()
         }).catch(err => {
@@ -43,17 +55,25 @@ class CategoryEdit extends Component {
         });
     }
 
+    deleteWord = (num) => {
+        let newArr = this.state.wordList.filter((val, i) => i !== num);
+        this.setState({
+            wordList: newArr
+        })
+    }
+
     render(){
         let words = this.state.wordList.map((val, i) =>{
             return (
                 <div key={i}>
                     <p>{val}</p>
+                    <button onClick={() => this.deleteWord(i)}>Delete</button>
                 </div>
             )
         });
         return (
             <div>
-                <h1>Create Your Category</h1>
+                <h1>Edit Your Category</h1>
                 <div className='category-form'>
                     <div>
                         <input onChange={(e) => this.updateInput(e, "titleInput")} className="title-input" type="text" placeholder="Category Name" required value={this.state.titleInput}/>
@@ -66,8 +86,8 @@ class CategoryEdit extends Component {
                             {words}
                         </div>
                         <button onClick={() => {
-                            this.createCategory();
-                        }}>Create Category</button>
+                            this.saveChanges();
+                        }}>Save Changes</button>
                     </div>
                 </div>
             </div>
