@@ -4,28 +4,51 @@ class ShowWord extends Component {
     constructor(){
         super()
         this.state = {
-            wordArr: [],
-            currentWord: ""
+            currentWord: "",
+            wordArr: []
         }
     }
 
     componentDidMount(){
-        let thisCategory = ""
-        let newArr = this.props.categories
-        this.setState({
-            wordArr: newArr
+        let thisCategoryName = this.props.clickedCard;
+        let categoryWordArray = [];
+        this.props.categories.forEach(val => {
+            if(val.title===thisCategoryName){
+                val.list.forEach(val => {
+                    categoryWordArray.push(val)
+                });
+            }
         })
-        this.getRandomWord()
+        console.log(this.props.categories)
+        console.log(this.props.clickedCard)
+        console.log(categoryWordArray)
+        this.setState({
+            wordArr: categoryWordArray
+        })
+        this.firstRandomWord(categoryWordArray)
+        console.log()
     }
 
-    getRandomWord = () => {
-        let arrayLength = this.props.categories[this.props.clickedCard].length;
+    firstRandomWord = (arr) => {
+        let arrayLength = arr.length;
         let num = Math.floor((Math.random() * arrayLength));
-        let word = this.props.categories[this.props.clickedCard][num];
+        let word = arr[num];
         console.log(word, num)
         this.setState({
             currentWord: word
         })
+        console.log(this.state.currentWord)
+    }
+
+    newRandomWord = () => {
+        let arrayLength = this.state.wordArr.length;
+        let num = Math.floor((Math.random() * arrayLength));
+        let word = this.state.wordArr[num];
+        console.log(word, num)
+        this.setState({
+            currentWord: word
+        })
+        console.log(this.state.currentWord)
     }
 
     render(){
@@ -34,7 +57,7 @@ class ShowWord extends Component {
                 <div className="show-word">
                     <p>{this.state.currentWord}</p>
                 </div>
-                <button onClick={this.getRandomWord}>NEXT</button>
+                <button onClick={this.newRandomWord}>NEXT</button>
             </div>
         )
     }

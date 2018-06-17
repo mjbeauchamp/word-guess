@@ -4,13 +4,15 @@ import ListGrid from './components/ListGrid'
 import ShowWord from './components/ShowWord'
 import CategoryCreate from './components/CategoryCreate'
 import NavBar from './components/NavBar';
-import logo from './logo.svg';
+import CategoryEdit from './components/CategoryEdit';
 import './App.css';
 import './components/ListCard.css'
 import './components/ListGrid.css'
 import './components/ShowWord.css'
 import './components/CategoryCreate.css'
+import './components/CategoryEdit'
 import './components/NavBar.css'
+
 
 class App extends Component {
   constructor(){
@@ -19,8 +21,10 @@ class App extends Component {
       showListGrid: true,
       showShowWord: false,
       showCategoryCreate: false,
+      showCategoryEdit: false,
       categories: {},
-      clickedCard: ""
+      clickedCard: "",
+      idNum: 0
     }
   }
 
@@ -35,8 +39,10 @@ class App extends Component {
   componentDidMount(){
     axios.get("/api/list_grid").then(response => {
       this.setState({
-          categories: response.data
+          categories: response.data.categories,
+          idNum: response.data.idNum
       })
+      console.log(response.data)
   }).catch(err => {
       console.log(err)
   })
@@ -46,6 +52,7 @@ class App extends Component {
     this.setState({
       showShowWord: true,
       showListGrid: false,
+      showCategoryEdit: false,
       showCategoryCreate: false
     })
   }
@@ -54,7 +61,17 @@ class App extends Component {
     this.setState({
       showShowWord: false,
       showListGrid: false,
+      showCategoryEdit: false,
       showCategoryCreate: true
+    })
+  }
+
+  showEditList = () => {
+    this.setState({
+      showShowWord: false,
+      showListGrid: false,
+      showCategoryEdit: true,
+      showCategoryCreate: false
     })
   }
 
@@ -65,7 +82,9 @@ class App extends Component {
         showShowWord: false,
         showListGrid: true,
         showCategoryCreate: false,
-        categories: response.data
+        showCategoryEdit: false,
+        categories: response.data.categories,
+        idNum: response.data.idNum
       })
     })
   }
@@ -73,11 +92,13 @@ class App extends Component {
   render() {
     let shownComponent;
     if(this.state.showListGrid){
-      shownComponent = <ListGrid saveClickedCard={this.saveClickedCard} showWord={this.showWord} />
+      shownComponent = <ListGrid saveClickedCard={this.saveClickedCard} showWord={this.showWord} showCategoryEdit={this.showCategoryEdit}/>
     } else if(this.state.showShowWord){
       shownComponent = <ShowWord categories={this.state.categories} clickedCard={this.state.clickedCard}/>
     } else if(this.state.showCategoryCreate){
-      shownComponent = <CategoryCreate showHome={this.showHome} />
+      shownComponent = <CategoryCreate showHome={this.showHome} idNum={this.state.idNum}/>
+    } else if(this.state.showCategoryEdit){
+      shownComponent = <CategoryEdit />
     }
     return (
       <div>

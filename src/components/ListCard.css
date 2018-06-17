@@ -8,3 +8,11 @@
     border-radius: 4px;
     margin: 3%;
 }
+
+.edit-delete {
+    display: none;
+}
+
+.list-card:hover .edit-delete {
+    display: block;
+}

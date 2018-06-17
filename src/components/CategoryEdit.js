@@ -1,26 +1,16 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 
-class CategoryCreate extends Component {
+class CategoryEdit extends Component {
     constructor(){
         super()
         this.state = {
             titleInput: "",
             wordInput: "",
-            wordList: [],
-            idNum: 0
+            wordList: []
         }
     }
-    componentDidMount(){
-        axios.get("/api/list_grid").then(response => {
-            this.setState({
-                idNum: response.data.idNum
-            })
-            console.log(this.state.idNum)
-        }).catch(err => {
-            console.log(err)
-        });
-    }
+
     updateInput = (e, inputName) => {
         let input = e.target.value;
         this.setState({
@@ -41,13 +31,11 @@ class CategoryCreate extends Component {
     createCategory = () => {
         let titleInput = this.state.titleInput.toLowerCase();
         let wordList = this.state.wordList;
-        let idNum = this.state.idNum
-        axios.post("/api/list_grid", {titleInput, wordList, idNum}).then( res => {
+        axios.post("/api/list_grid", {titleInput, wordList}).then( res => {
             this.setState({
                 titleInput: "",
                 wordInput: "",
-                wordList: [],
-                idNum: 0
+                wordList: []
             }),
             this.props.showHome()
         }).catch(err => {
@@ -87,4 +75,4 @@ class CategoryCreate extends Component {
     }
 }
 
-export default CategoryCreate;
+export default CategoryEdit;

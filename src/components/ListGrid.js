@@ -6,29 +6,39 @@ class ListGrid extends Component{
     constructor(){
         super();
         this.state = {
-            categoryNames: []
+            categoryData: [],
+            categoryNames: [],
+            idNum: 0
         }
     }
     componentDidMount(){
         axios.get("/api/list_grid").then(response => {
             let newArr = [];
-            for(let key in response.data){
-                newArr.push(key)
-            }
-            this.setState({
-                categoryNames: newArr
+            response.data.categories.forEach(val => {
+                newArr.push(val.title)
             })
-            console.log(this.state.categoryNames)
+            this.setState({
+                categoryNames: newArr,
+                idNum: response.data.idNum,
+                categoryData: response.data.categories
+            })
         }).catch(err => {
             console.log(err)
         })
     }
 
     render(){
+        
         let names = this.state.categoryNames.map((val, i) => {
+            let id;
+            this.state.categoryData.forEach(item => {
+                if(item.title===val){
+                    id = item.idNum
+                }
+            });
             return (
                 // listName={val} gives us the category name, which is also the property key name in the main App.js categories object. This can help us access the proper array for the ShowWord 
-                <ListCard key={i} listName={val} showWord={this.props.showWord} saveClickedCard={this.props.saveClickedCard}/>
+                <ListCard id={id} key={i} listName={val} showWord={this.props.showWord} showCategoryEdit={this.props.showCategoryEdit} saveClickedCard={this.props.saveClickedCard}/>
             )
         });
 
