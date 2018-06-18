@@ -11,6 +11,7 @@ class CategoryCreate extends Component {
             idNum: 0
         }
     }
+
     componentDidMount(){
         axios.get("/api/list_grid").then(response => {
             this.setState({
@@ -21,11 +22,19 @@ class CategoryCreate extends Component {
             console.log(err)
         });
     }
+
     updateInput = (e, inputName) => {
         let input = e.target.value;
         this.setState({
             [inputName]: input
         });
+    }
+
+    deleteWord = (num) => {
+        let newArr = this.state.wordList.filter((val, i) => i !== num);
+        this.setState({
+            wordList: newArr
+        })
     }
 
     addWord = () => {
@@ -60,6 +69,7 @@ class CategoryCreate extends Component {
             return (
                 <div key={i}>
                     <p>{val}</p>
+                    <button onClick={() => this.deleteWord(i)}>Delete</button>
                 </div>
             )
         });

@@ -63,7 +63,7 @@ app.post("/api/list_grid", (req, res) => {
 app.put("/api/list_grid/:id", (req, res) => {
     let newTitle = req.body.titleInput;
     let newList = req.body.wordList;
-    let id = req.body.id;
+    let id = parseInt(req.params.id);
     categories.forEach((val, i, arr) => {
         if(val.idNum===id){
             arr[i] = {
