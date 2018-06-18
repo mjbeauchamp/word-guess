@@ -7,8 +7,6 @@
     background-color: cornflowerblue;
     border-radius: 5px;
     margin-bottom: 20px;
-    word-break: break-all;
-    word-wrap: break-word;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -17,7 +15,6 @@
 .show-word p {
     margin-top: 10%;
     width: 85%;
-    word-break: break-all;
     word-wrap: break-word;
 }
 
