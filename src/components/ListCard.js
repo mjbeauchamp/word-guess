@@ -24,11 +24,16 @@ function ListCard(props){
             props.saveClickedCard(listName);
             props.showWord();
         }}>
-            {editBtn}
-            {deleteBtn}
-            <p>{listName}</p>
+            <div className="button-div">
+                {editBtn}
+                {deleteBtn}
+            </div>
+            <div>
+                <p>{listName}</p>
+            </div>
         </div>
     )
 }
 
 export default ListCard;
+

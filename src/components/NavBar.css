@@ -1,5 +1,5 @@
 .my-navbar {
-    height: 80px;
+    min-height: 80px;
     width: 100%;
     background-color: cornflowerblue;
     display: flex;
@@ -10,4 +10,9 @@
 
 .my-navbar button {
     margin: 15px;
+}
+
+.my-quote {
+    max-width: 40%;
+    margin-left: 5%;
 }

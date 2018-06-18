@@ -1,0 +1,7 @@
+.edit-delete {
+    padding: 4px;
+}
+
+.edit-delete:hover {
+    color: white;
+}

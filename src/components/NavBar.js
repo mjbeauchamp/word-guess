@@ -28,7 +28,7 @@ class NavBar extends Component{
                 <button onClick={this.props.showHome}>Home</button>
                 {createListButt}
                 <button onClick={this.getQuote}>Get Inspirational Quote!</button>
-                <div dangerouslySetInnerHTML={ {__html: this.state.quote} }></div>
+                <div className="my-quote" dangerouslySetInnerHTML={ {__html: this.state.quote} }></div>
             </div>
         )
     }

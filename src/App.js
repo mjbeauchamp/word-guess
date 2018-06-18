@@ -12,6 +12,7 @@ import './components/ShowWord.css'
 import './components/CategoryCreate.css'
 import './components/CategoryEdit'
 import './components/NavBar.css'
+import './components/EditDelBtn.css'
 
 
 class App extends Component {
