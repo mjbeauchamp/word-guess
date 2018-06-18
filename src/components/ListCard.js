@@ -1,4 +1,6 @@
 import React from 'react';
+import EditBtn from './EditBtn';
+import DeleteBtn from './DeleteBtn';
 
 function ListCard(props){
     let categoryData = props.categoryData;
@@ -15,8 +17,8 @@ function ListCard(props){
     let editBtn;
     let deleteBtn;
     if(idNum>6){
-        editBtn = <button className="edit-delete" onClick={e => props.showEditList(e, idNum, title, wordArr)}>Edit</button>;
-        deleteBtn = <button className="edit-delete" onClick={e => props.deleteList(e, idNum, title)}>Delete</button>
+        editBtn = <EditBtn idNum={idNum} title={title} wordArr={wordArr} showEditList={props.showEditList} />;
+        deleteBtn = <DeleteBtn idNum={idNum} title={title} deleteList={props.deleteList} />
     }
     return (
         <div className="list-card" cardname={props.listName} onClick={() => {
