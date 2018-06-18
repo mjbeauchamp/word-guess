@@ -8,9 +8,11 @@ class ListGrid extends Component{
         this.state = {
             categoryData: [],
             categoryNames: [],
-            idNum: 0
+            idNum: 0,
+            quote: ""
         }
     }
+
     componentDidMount(){
         axios.get("/api/list_grid").then(response => {
             let newArr = [];
@@ -45,8 +47,16 @@ class ListGrid extends Component{
         });
     }
 
+    getQuote = () => {
+        axios.get(`http://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=1&timestamp=${new Date().getTime()}`).then(response => {
+            console.log(response)
+            this.setState({
+                quote: response.data[0].content
+            })
+        }).catch();
+    }
+
     render(){
-        
         let names = this.state.categoryNames.map((val, i) => {
             let id;
             this.state.categoryData.forEach(item => {
@@ -63,6 +73,8 @@ class ListGrid extends Component{
         return (
             <div>
                 <h1>PICK A CATEGORY</h1>
+                <button onClick={this.getQuote}>Get Inspirational Quote!</button>
+                <div dangerouslySetInnerHTML={ {__html: this.state.quote} }></div>
                 <p>Choose a topic and start guessing!</p>
                 <div className="list-grid">
                     {names}

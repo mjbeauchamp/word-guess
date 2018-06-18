@@ -42,7 +42,7 @@ class ShowWord extends Component {
 
     newRandomWord = () => {
         let arrayLength = this.state.wordArr.length;
-        let num = Math.floor((Math.random() * arrayLength));
+        let num = Math.floor(Math.random() * arrayLength);
         let word = this.state.wordArr[num];
         console.log(word, num)
         this.setState({
