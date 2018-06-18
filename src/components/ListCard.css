@@ -1,5 +1,6 @@
 .list-card{
     width: 20%;
+    padding: 3%;
     height: 200px;
     background-color: cornflowerblue;
     display: flex;
@@ -7,6 +8,9 @@
     align-items: center;
     border-radius: 4px;
     margin: 3%;
+    word-break: break-all;
+    word-wrap: break-word;
+
 }
 
 .edit-delete {
@@ -19,6 +23,6 @@
 
 @media screen and  (max-width: 700px) {
     .list-card {
-        width: 40%;
+        width: 60%;
     }
 }

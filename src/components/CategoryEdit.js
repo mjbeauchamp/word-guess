@@ -76,11 +76,11 @@ class CategoryEdit extends Component {
                 <h1>Edit Your Category</h1>
                 <div className='category-form'>
                     <div>
-                        <input onChange={(e) => this.updateInput(e, "titleInput")} className="title-input" type="text" placeholder="Category Name" required value={this.state.titleInput}/>
+                        <input maxLength="40" onChange={(e) => this.updateInput(e, "titleInput")} className="title-input" type="text" placeholder="Category Name" required value={this.state.titleInput}/>
                         <hr />
                     </div>
                     <div>
-                        <input onChange={(e) => this.updateInput(e, "wordInput")} className="word-input" type="text" placeholder="Word to guess" required value={this.state.wordInput}/>
+                        <input maxLength="40" onChange={(e) => this.updateInput(e, "wordInput")} className="word-input" type="text" placeholder="Word to guess" required value={this.state.wordInput}/>
                         <button onClick={this.addWord}>Add Word</button>
                         <div className="word-container">
                             {words}

@@ -5,7 +5,6 @@ import DeleteBtn from './DeleteBtn';
 function ListCard(props){
     let categoryData = props.categoryData;
     let idNum = props.id;
-    console.log(idNum)
     let title = props.listName;
     let wordArr = [];
     categoryData.forEach(val => {

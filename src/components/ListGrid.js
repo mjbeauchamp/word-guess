@@ -32,7 +32,6 @@ class ListGrid extends Component{
     deleteList = (e, idNum, title) => {
         e.stopPropagation();
         axios.delete("/api/list_grid/" + idNum).then(response => {
-          console.log(response.data.categories)
           let newArr = [];
             response.data.categories.forEach(val => {
                 newArr.push(val.title)
@@ -45,15 +44,6 @@ class ListGrid extends Component{
         }).catch(err => {
           console.log(err)
         });
-    }
-
-    getQuote = () => {
-        axios.get(`http://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=1&timestamp=${new Date().getTime()}`).then(response => {
-            console.log(response)
-            this.setState({
-                quote: response.data[0].content
-            })
-        }).catch();
     }
 
     render(){
@@ -73,9 +63,7 @@ class ListGrid extends Component{
         return (
             <div>
                 <h1>PICK A CATEGORY</h1>
-                <button onClick={this.getQuote}>Get Inspirational Quote!</button>
-                <div dangerouslySetInnerHTML={ {__html: this.state.quote} }></div>
-                <p>Choose a topic and start guessing!</p>
+                <p>Choose a topic. Get your friends to guess the words!</p>
                 <div className="list-grid">
                     {names}
                 </div>

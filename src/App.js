@@ -50,7 +50,6 @@ class App extends Component {
     this.setState({
       clickedCard: card
     })
-    console.log(this.state.clickedCard)
   }
 
   componentDidMount(){
@@ -59,7 +58,6 @@ class App extends Component {
           categories: response.data.categories,
           idNum: response.data.idNum
       })
-      console.log(response.data.categories)
       }).catch(err => {
       console.log(err)
     })
