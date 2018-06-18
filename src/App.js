@@ -45,16 +45,6 @@ class App extends Component {
     })
   }
 
-  deleteList(e, idNum, title){
-    e.stopPropagation();
-    let newCatList = {};
-    axios.delete("/api/list_grid/" + idNum, {idNum, title}).then(response => {
-      console.log(response.categories)
-    }).catch(err => {
-      console.log(err)
-    });
-  }
-
   saveClickedCard = (listName) => {
     let card = listName.toLowerCase();
     this.setState({
@@ -69,10 +59,10 @@ class App extends Component {
           categories: response.data.categories,
           idNum: response.data.idNum
       })
-      console.log(response.data)
-  }).catch(err => {
+      console.log(response.data.categories)
+      }).catch(err => {
       console.log(err)
-  })
+    })
   }
 
   showWord = () => {
@@ -110,7 +100,7 @@ class App extends Component {
   render() {
     let shownComponent;
     if(this.state.showListGrid){
-      shownComponent = <ListGrid deleteList={this.deleteList} saveClickedCard={this.saveClickedCard} showWord={this.showWord} showCategoryEdit={this.showCategoryEdit} showEditList={this.showEditList}/>
+      shownComponent = <ListGrid saveClickedCard={this.saveClickedCard} showWord={this.showWord} showCategoryEdit={this.showCategoryEdit} showEditList={this.showEditList} showHome={this.showHome}/>
     } else if(this.state.showShowWord){
       shownComponent = <ShowWord categories={this.state.categories} clickedCard={this.state.clickedCard}/>
     } else if(this.state.showCategoryCreate){
