@@ -17,7 +17,7 @@ class ShowWord extends Component {
         let newWord = this.newRandomWord();
         let num = this.state.teamOne + 1;
         console.log(num)
-        if(num<5){
+        if(num<5 && !this.state.gameWon){
             this.setState({
                 teamOne: num,
                 currentWord: newWord
@@ -36,7 +36,7 @@ class ShowWord extends Component {
       teamTwoPoint = () => {
         let newWord = this.newRandomWord();
         let num = this.state.teamTwo + 1;
-        if(num<5){
+        if(num<5 && !this.state.gameWon){
             this.setState({
                 teamTwo: num,
                 currentWord: newWord
