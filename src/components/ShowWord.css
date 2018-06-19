@@ -2,7 +2,6 @@
     width: 70%;
     height: 50vh;
     margin: 0 auto;
-    margin-top: 10%;
     font-size: 70px;
     background-color: cornflowerblue;
     border-radius: 5px;
@@ -16,6 +15,24 @@
     margin-top: 10%;
     width: 85%;
     word-wrap: break-word;
+}
+
+.score-box {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+
+.score-box p {
+    padding: 25px;
+    font-size: 25px;
+}
+
+.team-btn {
+    padding: 15px;
+    margin: 15px;
+    border-radius: 3px;
 }
 
 @media screen and  (max-width: 700px) {

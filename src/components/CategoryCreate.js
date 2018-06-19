@@ -82,7 +82,7 @@ class CategoryCreate extends Component {
                     </div>
                     <div>
                         <input maxLength="40" onChange={(e) => this.updateInput(e, "wordInput")} className="word-input" type="text" placeholder="Word to guess" required value={this.state.wordInput}/>
-                        <button onClick={this.addWord}>Add Word</button>
+                        <i className="far fa-plus-square" onClick={this.addWord}></i>
                         <div className="word-container">
                             {words}
                         </div>

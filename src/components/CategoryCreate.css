@@ -31,3 +31,13 @@
     padding: 10px;
     font-size: 15px;
 }
+
+i {
+    margin: 6px;
+}
+
+@media screen and (max-width: 500px) {
+    .category-form {
+        width: 100%;
+    }
+}

@@ -5,9 +5,46 @@ class ShowWord extends Component {
         super()
         this.state = {
             currentWord: "",
-            wordArr: []
+            wordArr: [],
+            teamOne: 0,
+            teamTwo: 0,
+            gameWon: false,
+            winningTeam: ""
         }
     }
+
+    teamOnePoint = () => {
+        let newWord = this.newRandomWord();
+        let num = this.state.teamOne + 1;
+        console.log(num)
+        if(num<5){
+            this.setState({
+                teamOne: num,
+                currentWord: newWord
+            })
+        } else {
+            this.setState({
+                gameWon: true,
+                winningTeam: "Team 1"
+            })
+        }
+      }
+    
+      teamTwoPoint = () => {
+        let newWord = this.newRandomWord();
+        let num = this.state.teamTwo + 1;
+        if(num<5){
+            this.setState({
+                teamTwo: num,
+                currentWord: newWord
+            })
+        } else {
+            this.setState({
+                gameWon: true,
+                winningTeam: "Team 2"
+            })
+        }
+      }
 
     componentDidMount(){
         let thisCategoryName = this.props.clickedCard;
@@ -19,9 +56,7 @@ class ShowWord extends Component {
                 });
             }
         })
-        console.log(this.props.categories)
-        console.log(this.props.clickedCard)
-        console.log(categoryWordArray)
+
         this.setState({
             wordArr: categoryWordArray
         })
@@ -33,7 +68,6 @@ class ShowWord extends Component {
         let arrayLength = arr.length;
         let num = Math.floor((Math.random() * arrayLength));
         let word = arr[num];
-        console.log(word, num)
         this.setState({
             currentWord: word
         })
@@ -44,20 +78,44 @@ class ShowWord extends Component {
         let arrayLength = this.state.wordArr.length;
         let num = Math.floor(Math.random() * arrayLength);
         let word = this.state.wordArr[num];
-        console.log(word, num)
+        return word;
+    }
+
+    playAgain = () => {
+        let newWord = this.newRandomWord();
         this.setState({
-            currentWord: word
+            currentWord: newWord,
+            teamOne: 0,
+            teamTwo: 0,
+            gameWon: false,
+            winningTeam: ""
         })
-        console.log(this.state.currentWord)
     }
 
     render(){
+        let winMessage;
+        if(this.state.gameWon){
+            winMessage = <div><p>{this.state.winningTeam} won the game!</p><button onClick={this.playAgain}>Play This Category Again?</button></div>
+        } 
         return (
             <div>
+                {winMessage}
+                <div className="score-box">
+                    <p>Team 1 Points: {this.state.teamOne}</p>
+                    <p>Team 2 Points: {this.state.teamTwo}</p>
+                </div>
                 <div className="show-word">
                     <p>{this.state.currentWord}</p>
                 </div>
-                <button onClick={this.newRandomWord}>NEXT</button>
+                <button className="team-btn" onClick={() => {
+                    this.teamOnePoint();
+                    this.newRandomWord();
+                }}>Point for Team 1</button>
+                <button className="team-btn" onClick={() => {
+                    this.teamTwoPoint();
+                    this.newRandomWord();
+                }}>Point for Team 2</button>
+                {/* <button onClick={this.newRandomWord}>NEXT</button> */}
             </div>
         )
     }

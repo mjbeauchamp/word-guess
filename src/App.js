@@ -30,8 +30,11 @@ class App extends Component {
       selectedId: 0,
       selectedTitle: "",
       selectedWordArr: []
+      
     }
   }
+
+  
 
   //This is what the call looks like from ListCard: props.showEditList(e, idNum, title, wordArr)
   showEditList = (e, idNum, title, wordArr) => {
@@ -102,7 +105,7 @@ class App extends Component {
     if(this.state.showListGrid){
       shownComponent = <ListGrid saveClickedCard={this.saveClickedCard} showWord={this.showWord} showCategoryEdit={this.showCategoryEdit} showEditList={this.showEditList} showHome={this.showHome}/>
     } else if(this.state.showShowWord){
-      shownComponent = <ShowWord categories={this.state.categories} clickedCard={this.state.clickedCard}/>
+      shownComponent = <ShowWord categories={this.state.categories} clickedCard={this.state.clickedCard} teamOnePoint={this.teamOnePoint} teamTwoPoint={this.teamTwoPoint} oneScore={this.state.teamOne} twoScore={this.state.teamTwo}/>
     } else if(this.state.showCategoryCreate){
       shownComponent = <CategoryCreate showHome={this.showHome} idNum={this.state.idNum}/>
     } else if(this.state.showCategoryEdit){
