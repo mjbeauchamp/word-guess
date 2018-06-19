@@ -21,11 +21,14 @@ class ShowWord extends Component {
             this.setState({
                 teamOne: num,
                 currentWord: newWord
+                
             })
         } else {
             this.setState({
                 gameWon: true,
-                winningTeam: "Team 1"
+                winningTeam: "Team 1",
+                teamOne: 0,
+                teamTwo: 0
             })
         }
       }
@@ -41,7 +44,9 @@ class ShowWord extends Component {
         } else {
             this.setState({
                 gameWon: true,
-                winningTeam: "Team 2"
+                winningTeam: "Team 2",
+                teamOne: 0,
+                teamTwo: 0
             })
         }
       }
