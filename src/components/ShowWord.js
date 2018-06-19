@@ -100,7 +100,7 @@ class ShowWord extends Component {
     render(){
         let winMessage;
         if(this.state.gameWon){
-            winMessage = <div><p>{this.state.winningTeam} won the game!</p><button onClick={this.playAgain}>Play This Category Again?</button></div>
+            winMessage = <div className="win-game"><p>{this.state.winningTeam} won the game!</p><button onClick={this.playAgain}>Play This Category Again?</button></div>
         } 
         return (
             <div>
@@ -120,7 +120,6 @@ class ShowWord extends Component {
                     this.teamTwoPoint();
                     this.newRandomWord();
                 }}>Point for Team 2</button>
-                {/* <button onClick={this.newRandomWord}>NEXT</button> */}
             </div>
         )
     }

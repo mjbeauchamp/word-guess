@@ -66,9 +66,9 @@ class CategoryCreate extends Component {
     render(){
         let words = this.state.wordList.map((val, i) =>{
             return (
-                <div key={i}>
+                <div className="add-word" key={i}>
                     <p>{val}</p>
-                    <button onClick={() => this.deleteWord(i)}>Delete</button>
+                    <i className="far fa-trash-alt del-button" onClick={() => this.deleteWord(i)}></i>
                 </div>
             )
         });

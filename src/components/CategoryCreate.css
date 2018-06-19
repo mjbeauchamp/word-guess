@@ -1,11 +1,11 @@
 .category-form {
-    width: 50%;
+    width: 80%;
     margin: 0 auto;
 }
 
 .word-container {
     height: 250px;
-    width: 50%;
+    width: 60%;
     margin: 0 auto;
     margin-bottom: 20px;
     overflow: scroll;
@@ -36,8 +36,23 @@ i {
     margin: 6px;
 }
 
+.del-button {
+    margin-left: 20px;
+}
+
+.add-word {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;;
+}
+
+.fa-plus-square {
+    margin-left: 20px;
+}
+
 @media screen and (max-width: 500px) {
     .category-form {
         width: 100%;
     }
 }
+

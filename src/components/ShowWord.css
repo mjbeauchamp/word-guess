@@ -35,6 +35,23 @@
     border-radius: 3px;
 }
 
+.win-game {
+    font-size: 40px;
+    width: 70%;
+    background-color: cornflowerblue;
+    margin: 0 auto;
+    padding: 150px 20px;
+    margin-top: 45px;
+    border-radius: 5px;
+    height: 35vh;
+}
+
+.win-game button {
+    padding: 15px;
+    border-radius: 3px;
+    font-size: 14px;
+}
+
 @media screen and  (max-width: 700px) {
     .show-word {
         font-size: 50px;

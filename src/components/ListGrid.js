@@ -63,7 +63,7 @@ class ListGrid extends Component{
         return (
             <div>
                 <h1>PICK A CATEGORY</h1>
-                <p>Choose a category. Pick two teams. Take turns trying to get your team to guess a word!</p>
+                <p className="game-description">Choose a category. Pick two teams. Each team takes turns picking a member to try to get them to guess a word!</p>
                 <p>Whichever team scores 5 points first wins!</p>
                 <div className="list-grid">
                     {names}

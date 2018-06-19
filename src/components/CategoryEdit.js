@@ -65,9 +65,9 @@ class CategoryEdit extends Component {
     render(){
         let words = this.state.wordList.map((val, i) =>{
             return (
-                <div key={i}>
+                <div key={i} className="add-word">
                     <p>{val}</p>
-                    <button onClick={() => this.deleteWord(i)}>Delete</button>
+                    <i className="del-button far fa-trash-alt" onClick={() => this.deleteWord(i)}></i>
                 </div>
             )
         });
